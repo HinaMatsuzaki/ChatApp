@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('follows', function (Blueprint $table) {
+            $table->primary(["following_id", "followed_id"]);
             $table->foreignId('following_id')->constrained('users');
             $table->foreignId('followed_id')->constrained('users');
             $table->timestamps();

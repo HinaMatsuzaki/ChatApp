@@ -22,7 +22,7 @@ class HobbiesSeeder extends Seeder
                 'updated_at' => new DateTime(),
         ]);
         DB::table('hobbies')->insert([
-                'name' => 'Bascketball',
+                'name' => 'Basketball',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
         ]);

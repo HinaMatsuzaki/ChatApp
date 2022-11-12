@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'birthday',
+        'languages_native_id',
+        'languages_learn_id',
+        'self_introduction',
+        'image_path',
     ];
 
     /**
@@ -41,4 +46,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function hobbies(){
+        // many-to-many relationship
+        // user has multiple hobbies
+        return $this->belongsToMany(Hobby::class);
+    }
+    
+    
+    public function follows()
+    {
+        return $this->belongsToMany(User::class, "follows", "following_id", "followed_id");
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, "follows", "followed_id", "following_id");
+    }
+    
 }

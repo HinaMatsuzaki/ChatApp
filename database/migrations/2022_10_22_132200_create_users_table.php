@@ -20,10 +20,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->date('birthday')->nullable();
-            $table->foreignId('languages_native_id')->constrained('languages')->nullable();
-            $table->foreignId('languages_learn_id')->constrained('languages')->nullable();
-            $table->text('self_intoduction', 500)->nullable();
-            $table->string('image_path');
+            $table->foreignId('languages_native_id')->nullable()->constrained('languages');
+            $table->foreignId('languages_learn_id')->nullable()->constrained('languages');
+            $table->text('self_introduction', 255)->nullable();
+            $table->string('image_path')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
