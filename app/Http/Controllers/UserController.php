@@ -84,6 +84,13 @@ class UserController extends Controller
         auth()->user()->follows()->detach($user);
         return redirect(route("users.index"));
     }
+    
+    public function edit(UserRequest $request, User $user)
+    {
+        $input_user = $request['user'];
+        $user::find(auth()->id())->fill($input_user)->save();
+        return view('users/edit')->with(['user' => $user, 'languages' => $language->get()]);
+    }
 }
 
 //プロフィール作成ページの表示 (create)、保存処理 (store)

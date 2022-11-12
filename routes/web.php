@@ -39,6 +39,8 @@ Route::group(["middleware" => ["auth"]], function() {
 
 Route::get("/profile/show", [UserController::class, 'show']);
 
+Route::get("/profile/edit", [UserController::class, 'edit']);
+
 
 
 require __DIR__.'/auth.php';
