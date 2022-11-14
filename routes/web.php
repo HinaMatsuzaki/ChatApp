@@ -35,11 +35,12 @@ Route::group(["middleware" => ["auth"]], function() {
     Route::resource('users', UserController::class);
     Route::post("/follow/{user}", [UserController::class, "follow"])->name("follow");
     Route::post("/unfollow/{user}", [UserController::class, "unfollow"])->name("unfollow");
+    Route::get("/profile/edit", [UserController::class, 'edit']);
+    Route::put("/profile/update", [UserController::class, 'update']);
 });
 
 Route::get("/profile/show", [UserController::class, 'show']);
 
-Route::get("/profile/edit", [UserController::class, 'edit']);
 
 
 

@@ -19,10 +19,6 @@
                 <p>Email</p>
                 <p>{{ $user->email }}</p>
             </div>
-            <div class="password">
-                <p>Password</p>
-                <p>{{ $user->password }}</p>
-            </div>
             <div class="birthday">
                 <p>Birthday</p>
                 <p>{{ $user->birthday }}</p>
@@ -44,6 +40,25 @@
             <div class="self_introduction">
                 <p>Self Introduction</p>
                 <p>{{ $user->self_introduction}}</p>
+            </div>
+            <div>
+                <div class="flex gap-3 items-end">
+                    <p class="text-2xl font-bold">Following</p>
+                    <span>{{$user->follows->count()}} following</span>
+                </div>
+    
+                @foreach ($user->follows as $follow)
+                    <p class="px-4 py-1 m-2 rounded bg-gray-200 border-b-4 border-gray-300 w-max">{{$follow->name}}</p>
+                @endforeach
+            </div>
+            <div>
+                <div class="flex gap-3 items-end">
+                    <p class="text-2xl font-bold">Followers</p>
+                    <span>{{$user->followers->count()}} followers</span>
+                </div>
+                @foreach ($user->followers as $follower)
+                    <p class="px-4 py-1 m-2 rounded bg-gray-200 border-b-4 border-gray-300 w-max">{{$follower->name}}</p>
+                @endforeach
             </div>
         </form>
     </body>

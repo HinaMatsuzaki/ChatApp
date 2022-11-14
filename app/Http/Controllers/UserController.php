@@ -85,12 +85,35 @@ class UserController extends Controller
         return redirect(route("users.index"));
     }
     
-    public function edit(UserRequest $request, User $user)
+    public function edit(User $user, Language $language, Hobby $hobby){
+         $user = Auth::user();
+         return view('users/edit')->with(['user' => $user, 'languages' => $language->get(), 'hobbies' => $hobby->get()]); 
+    }
+    
+    public function update (Request $request, User $user, Language $language){
+        $input = $request['user'];
+        if($request->file('image_path') != null){
+            $image_url = Cloudinary::upload($request->file('image_path')->getRealPath())->getSecurePath();
+            $input += array('image_path' => $image_url);
+        }
+        
+        $user = User::find(auth()->id());
+        $user->fill($input)->save();
+        if($request->input("hobbies") != null){
+            $user->hobbies()->detach();
+            $user->hobbies()->attach($request->input("hobbies"));
+        }
+        return redirect('/profile/show');
+    }
+
+/*
+    public function update(UserRequest $request, User $user, Language $language)
     {
         $input_user = $request['user'];
         $user::find(auth()->id())->fill($input_user)->save();
         return view('users/edit')->with(['user' => $user, 'languages' => $language->get()]);
     }
+*/
 }
 
 //プロフィール作成ページの表示 (create)、保存処理 (store)
