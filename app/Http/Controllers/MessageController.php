@@ -30,14 +30,15 @@ class MessageController extends Controller
 
     public function show($user_id)
     {
-        
+        // get the user whose user id is $user_id
+        $user = User::find($user_id);
         // 送信者が自分で受信者がA、送信者がAで受信者が自分のデータを昇順で取得
         $messages = Message::where([["sender_id", auth()->id()], ["receiver_id", $user_id]])
             ->orWhere([["sender_id", $user_id], ["receiver_id", auth()->id()]])
             ->orderBy("created_at", "asc")->get();
         
 
-        return view("message/show")->with(["receiver_id" => $user_id, "messages" => $messages]);
+        return view("message/show")->with(["receiver_id" => $user_id, "messages" => $messages, "user" => $user]);
     }
     
     
