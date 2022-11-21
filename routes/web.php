@@ -2,17 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MessageController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,25 +14,39 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::group(['middleware' => ['auth']], function(){
+    Route::resource('users', UserController::class);
+    
+    // create profile
     Route::get("/profile/create", [UserController::class, 'create']);
+    
+    // store user profiles
+    Route::post("/profile/store", [UserController::class, 'store']);
+    
+    // show profile
+    Route::get("/profile/show", [UserController::class, 'show'])->name("show");
+    
+    // edit profile
+    Route::get("/profile/edit", [UserController::class, 'edit']);
+    
+    // update profile
+    Route::put("/profile/update", [UserController::class, 'update']);
+    
+    // show user recommendations
+    Route::get("/profile/index", [UserController::class, 'index'])->name("index");
+    
+    Route::post("/follow/{user}", [UserController::class, "follow"])->name("follow");
+    Route::post("/unfollow/{user}", [UserController::class, "unfollow"])->name("unfollow");
     
 });
 
-Route::post("/profile/store", [UserController::class, 'store']);
-
-Route::get("/profile/index", [UserController::class, 'index']);
-
-Route::group(["middleware" => ["auth"]], function() {
-    Route::resource('users', UserController::class);
-    Route::post("/follow/{user}", [UserController::class, "follow"])->name("follow");
-    Route::post("/unfollow/{user}", [UserController::class, "unfollow"])->name("unfollow");
-    Route::get("/profile/edit", [UserController::class, 'edit']);
-    Route::put("/profile/update", [UserController::class, 'update']);
-});
-
-Route::get("/profile/show", [UserController::class, 'show']);
-
-
-
-
+    // click Edit button on the profile page
+    // transfer from profile to edit profile page
+    Route::get("/profile/edit", [UserController::class, 'edit'])->name("edit");
+    
+    Route::post("/messages/{user}", [MessageController::class, 'show'])->name("send_message");
+    
+    Route::resource('messages', MessageController::class)->middleware(["auth"]);
+    
+    Route::post("/followBack/{user}", [MessageController::class, "followBack"])->name("followBack");
+    
 require __DIR__.'/auth.php';

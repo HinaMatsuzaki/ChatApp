@@ -61,5 +61,6 @@
                 @endforeach
             </div>
         </form>
+        <button type="button" onclick="location.href='/profile/edit'">Edit</button>
     </body>
 </html>
