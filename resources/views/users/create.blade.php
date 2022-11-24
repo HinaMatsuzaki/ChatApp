@@ -11,7 +11,7 @@
             <p>Profile Picture</p>
                 <input type="file" name="image">
             <div class="birthday">
-                <p>Birthday</p>
+                <p class="text-red-600">Birthday</p>
                 <input type="date" name="user[birthday]" value="" />
                 <p class="title__error" style="color:red">{{ $errors->first('user.birthday') }}</p>
             </div>

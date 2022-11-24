@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -26,13 +27,25 @@ class AuthenticatedSessionController extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(LoginRequest $request)
+    public function store(LoginRequest $request, User $user)
     {
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        
+        // get the user's email address
+        $user_email = $request->email;
+        // specify the user based on the email
+        $new_user = $user->where('email', $user_email)->first();
+        
+        // if the user hasn't created their profile yet, redirect to PROFILE
+        // if the user has created their profile already, redirect to HOME
+        if (($new_user->birthday == null)){
+            return redirect(RouteServiceProvider::PROFILE);
+        }else{
+            return redirect(RouteServiceProvider::HOME);
+        }
+        
     }
 
     /**

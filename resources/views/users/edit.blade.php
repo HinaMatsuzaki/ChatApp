@@ -10,7 +10,7 @@
             @csrf
             @method('PUT')
             <div class="profile_picture">
-                <p>Profile Picture</p>
+                <p class="text-red-500">Profile Picture</p>
                 <img src="{{ $user->image_path }}" class="rounded-circle" width="50" height="50">
                 <input type="file" name=image_path value={{ $user->image_path }}>
             </div>
