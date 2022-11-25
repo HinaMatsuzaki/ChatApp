@@ -5,10 +5,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -44,6 +40,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get("/profile/edit", [UserController::class, 'edit'])->name("edit");
     
     Route::post("/messages/{user}", [MessageController::class, 'show'])->name("send_message");
+    
+    Route::get('/', [MessageController::class, 'index'])->middleware(["auth"]);
     
     Route::resource('messages', MessageController::class)->middleware(["auth"]);
     
