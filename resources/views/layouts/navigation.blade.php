@@ -5,8 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('messages.index') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                    <a href="/">
+                        <img src=" {{ asset('images/logo.PNG') }}" width="50" height="50">
                     </a>
                 </div>
 
