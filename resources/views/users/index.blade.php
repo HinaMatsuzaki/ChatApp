@@ -9,7 +9,7 @@
             <div class = "grid grid-flow-row grid-cols-2">
                    @foreach ($similar_users as $user)
                         <div class = "flex items-center justify-between px-10 py-4 mx-20 my-4 bg-white rounded shadow">
-                            <div class="profile_picture">
+                            <div class="flex-none">
                                 <img src="{{ $user->image_path }}" class="rounded-circle" width="60" height="60">
                             </div>
                             <div class="flex flex-col">
@@ -29,7 +29,7 @@
                                         <p class="px-4 py-1 m-2 rounded-md bg-[#fecdd3]">{{$hobby->name}}</p>
                                     @endforeach
                                 </div>
-                                <p class="px-4 py-1 m-2 rounded-md border-2 border-[#cbd5e1]">{{ $user->self_introduction}}</p>
+                                <p class="px-4 py-1 m-2 flex-none overflow-y-scroll rounded-md border-2 border-[#cbd5e1]">{{ $user->self_introduction}}</p>
                             </div>
                             <div class="flex flex-col space-y-3">
                                 @if ($following_users_list->contains($user->id))

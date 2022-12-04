@@ -18,8 +18,8 @@
         <form action="/profile/store" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="py-12 px-10 h-[600px]">
-                <div class="mx-10 my-5 pr-20 rounded-md bg-white h-full mb-3 shadow-lg p-4">
-                    <div class="flex flex-row items-center space-x-40">
+                <div class="mx-10 my-5 pr-20 flex items-center justify-between rounded-md bg-white h-full mb-3 shadow-lg p-4">
+                    <div class="flex justify-center flex-row items-center space-x-40">
                         <!--Profile Picture-->
                         <div class="ml-20 -mr-40">
                             <p class="px-4 py-1 mr-40 font-bold text-white rounded-md border-2 border-gray-500 bg-blue-300">Profile Picture</p>

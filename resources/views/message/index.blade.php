@@ -28,7 +28,7 @@
             @foreach ($follow_requests as $follow_request)
                 @if ($follow_request->id != auth()->id())
                     <div class = "flex items-center justify-between px-10 py-4 mx-20 my-4 bg-white rounded shadow">
-                        <div class="profile_picture">
+                        <div class="flex-none">
                             <img src="{{ $follow_request->image_path }}" class="rounded-circle" width="60" height="60">
                         </div>
                         <div class="flex flex-col">

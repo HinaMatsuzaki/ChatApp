@@ -22,7 +22,7 @@
                 <div class="mx-10 my-5 pr-20 rounded-md bg-white h-full mb-3 shadow-lg p-4">
                     <div class="flex flex-row items-center space-x-40">
                         <!--Profile Picture-->
-                        <div class="ml-20 -mr-60">
+                        <div class="ml-20 -mr-60 flex-none">
                             <p class="px-4 py-1 mr-40 font-bold text-white rounded-md border-2 border-gray-500 bg-blue-300">Profile Picture</p>
                             <img src="{{ $user->image_path }}" class="rounded-circle" width="160" height="160">
                             <input type="file" name=image_path value={{ $user->image_path }}>

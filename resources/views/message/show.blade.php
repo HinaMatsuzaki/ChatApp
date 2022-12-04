@@ -12,21 +12,20 @@
     </x-slot>
 
     <div class="py-12 px-10 h-[600px]">
-        <div class="mx-10 bg-white h-full mb-3 shadow-lg p-4">
+        <div class="mx-10 bg-white h-full mb-3 shadow-lg p-4 space-y-2 overflow-y-scroll">
             @foreach ($messages as $message)
                 @if ($message->sender_id == auth()->id())
-                    <div class="flex items-center gap-2">
-                        <div class="bg-[#fecdd3] w-max px-3 py-1 my-2 rounded-md">
-                            {{$message->message}}
+                    <div class="flex items-end">
+                        <div class="flex flex-col space-y-1 text-sm max-w-lg mx-2 order-2 items-start">
+                            <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-[#fecdd3]">{{$message->message}}</span></div>
+                            <div class="text-xs">{{$message->created_at}}</div>
                         </div>
-                        <div class="text-xs">{{$message->created_at}}</div>
                     </div>
-
                 @else
-                    <div class="flex items-center gap-2">
-                        <div class="ml-auto text-xs">{{$message->created_at}}</div>
-                        <div class="bg-white border border-gray-300 w-max px-3 py-1 my-2 rounded-md">
-                            {{$message->message}}
+                    <div class="flex items-end justify-end">
+                        <div class="flex flex-col space-y-1 text-sm max-w-lg mx-2 order-1 items-end">
+                            <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-white border border-gray-300">{{$message->message}}</span></div>
+                            <div class="text-xs">{{$message->created_at}}</div>
                         </div>
                     </div>
                 @endif

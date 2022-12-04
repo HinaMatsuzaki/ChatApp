@@ -13,10 +13,10 @@
         <body>
             <form action="/profile/show" method="POST" enctype="multipart/form-data">
                 <div class="py-12 px-10 h-[600px]">
-                    <div class="mx-10 my-5 pr-20 bg-white h-full mb-3 shadow-lg p-4">
+                    <div class="mx-10 my-5 pr-20 bg-white h-full mb-3 shadow-lg p-4 overflow-y-scroll">
                         <div class="flex flex-row items-center space-x-40">
                             <!--Profile Picture-->
-                            <div class="ml-20 -mr-20">
+                            <div class="ml-20 -mr-20 flex-none">
                                 <img src="{{ $user->image_path }}" class="rounded-circle" width="160" height="160">
                             </div>
                             <div>
