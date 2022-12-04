@@ -33,7 +33,7 @@
         </div>
             <form class="flex gap-2" action={{route("messages.store")}} method="POST">
                 @csrf
-                {{-- messageと一緒に保存したいが画面には見せたくないデータはhiddenで隠してある。Controller側で値を設定することも可能だが、こっちの方が楽。 --}}
+                {{-- save the following data with message, but hide it from the screen --}}
                 <input value={{$receiver_id}} name="receiver_id" class="hidden">
                 <input value={{auth()->id()}} name="sender_id" class="hidden">
 

@@ -20,11 +20,11 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'user.birthday.required' => 'Please enter your name',
-            'user.languages_native_id.required' => 'Please select your first language',
-            'user.language.languages_learn_id.required' => 'Please select your second language',
+            'user.birthday.required' => 'Please enter your birthday',
+            'user.languages_native_id.required' => 'Please select your native language',
+            'user.language.languages_learn_id.required' => 'Please select your learning language',
             'hobbies.*.required' => 'Please select your hobbies',
-            'user.self_introduction.max:500' => 'Self Introduction is too long (maximum is 500 characters)',
+            'user.self_introduction.max:255' => 'Self Introduction is too long (maximum is 255 characters)',
         ];
     }
 }

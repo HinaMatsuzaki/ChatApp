@@ -32,7 +32,9 @@ class MessageController extends Controller
     {
         // get the user whose user id is $user_id
         $user = User::find($user_id);
-        // 送信者が自分で受信者がA、送信者がAで受信者が自分のデータを昇順で取得
+        // get the following data in ascending order
+        // login user is the sender and user-A is the receiver
+        // user-A is the sender and login user is the receiver 
         $messages = Message::where([["sender_id", auth()->id()], ["receiver_id", $user_id]])
             ->orWhere([["sender_id", $user_id], ["receiver_id", auth()->id()]])
             ->orderBy("created_at", "asc")->get();

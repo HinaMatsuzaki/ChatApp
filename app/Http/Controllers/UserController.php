@@ -14,9 +14,6 @@ class UserController extends Controller
 {
     // create profile
     public function create(Language $language, Hobby $hobby){
-        // if文で過去に作成したかを確認（カラムにデータが入っているか確認）
-        // 一度プロフィールを作成した人は、edit画面にリダイレクト
-        
         return view('users/create')->with(['languages' => $language->get(), 'hobbies' => $hobby->get()]);;
     }
     
